@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin PRO v2 - Black Diamond</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+body{
+  margin:0;
+  font-family:Poppins, sans-serif;
+  background:#0a0015;
+  color:#fff;
+  display:flex;
+}
+
+/* SIDEBAR */
+.sidebar{
+  width:220px;
+  background:#12001f;
+  height:100vh;
+  padding:20px;
+  border-right:2px solid #d4af37;
+}
+
+.sidebar h2{
+  color:#d4af37;
+}
+
+.sidebar button{
+  width:100%;
+  padding:12px;
+  margin-top:10px;
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
+  background:linear-gradient(90deg,#d4af37,#7b2cbf);
+  font-weight:bold;
+}
+
+/* MAIN */
+.main{
+  flex:1;
+  padding:25px;
+}
+
+.topbar h1{
+  color:#d4af37;
+}
+
+/* GRID */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
+  gap:20px;
+}
+
+.card{
+  background:#1a0033;
+  padding:15px;
+  border-radius:15px;
+  border:1px solid rgba(212,175,55,0.3);
+}
+
+.card img{
+  width:100%;
+  border-radius:10px;
+}
+
+.card h3{
+  color:#d4af37;
+}
+
+.card p{
+  font-size:13px;
+  color:#ccc;
+}
+
+.card button{
+  width:100%;
+  margin-top:8px;
+  padding:10px;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+}
+
+.edit{
+  background:#2ecc71;
+}
+
+.delete{
+  background:#e74c3c;
+  color:#fff;
+}
+
+/* MODAL */
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.7);
+  display:none;
+  justify-content:center;
+  align-items:center;
+}
+
+.modal-content{
+  background:#1a0033;
+  padding:20px;
+  border-radius:15px;
+  width:350px;
+  border:1px solid #d4af37;
+}
+
+.modal-content input,
+.modal-content textarea{
+  width:100%;
+  margin:8px 0;
+  padding:10px;
+  border:none;
+  border-radius:8px;
+  background:#222;
+  color:#fff;
+}
+
+.modal-content button{
+  width:100%;
+  padding:12px;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+  margin-top:5px;
+}
+
+.save{
+  background:linear-gradient(90deg,#d4af37,#7b2cbf);
+  font-weight:bold;
+}
+
+.close{
+  background:red;
+}
+</style>
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+  <h2>⚙️ Admin PRO</h2>
+  <button onclick="openAdd()">+ Novo Produto</button>
+  <button onclick="logout()">Sair</button>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+  <div class="topbar">
+    <h1>Produtos</h1>
+  </div>
+
+  <div class="grid" id="grid"></div>
+</div>
+
+<!-- MODAL ADD/EDIT -->
+<div class="modal" id="modal">
+  <div class="modal-content">
+    <h3 id="modalTitle">Novo Produto</h3>
+
+    <input id="name" placeholder="Nome">
+    <input id="image" placeholder="Imagem">
+    <input id="price" placeholder="Preço">
+    <textarea id="desc" placeholder="Descrição"></textarea>
+
+    <button class="save" onclick="saveProduct()">Salvar</button>
+    <button class="close" onclick="closeModal()">Fechar</button>
+
+    <input id="search" placeholder="🔍 Buscar produto..." oninput="searchProducts()"
+style="
+  padding:10px;
+  border-radius:10px;
+  border:none;
+  width:250px;
+  background:#222;
+  color:#fff;
+">
+  </div>
+</div>
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  onSnapshot,
+  deleteDoc,
+  doc
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+/* FIREBASE */
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDbjwt1jHAefWVXGC0wrhYHBs6uoy9qOdU",
+  authDomain: "blackdiamond-site.firebaseapp.com",
+  projectId: "blackdiamond-site",
+  storageBucket: "blackdiamond-site.firebasestorage.app",
+  messagingSenderId: "152407901003",
+  appId: "1:152407901003:web:7fbeebe478535ad7a59ece"
+};
+
+const app = initializeApp(firebaseConfig);
+
+const db = getFirestore(app);
+
+/* SISTEMA */
+
+let products = [];
+
+/* REALTIME */
+
+function renderRealtime(){
+
+  onSnapshot(collection(db,"products"), (snapshot)=>{
+
+    products = [];
+
+    snapshot.forEach((docItem)=>{
+
+      products.push({
+        id: docItem.id,
+        ...docItem.data()
+      });
+
+    });
+        const grid = document.getElementById('grid');
+
+    grid.innerHTML = '';
+
+    products.forEach((p)=>{
+
+      grid.innerHTML += `
+        <div class="card">
+
+          <img src="${p.image}">
+
+          <h3>${p.name}</h3>
+
+          <p>${p.description}</p>
+
+          <strong>${p.price}</strong>
+
+          <button class="delete"
+          onclick="deleteProduct('${p.id}')">
+          Remover
+          </button>
+
+        </div>
+      `;
+
+    });
+
+  });
+
+}
+
+/* ADD */
+
+window.saveProduct = async function(){
+
+  const name = document.getElementById('name').value;
+
+  const image = document.getElementById('image').value;
+
+  const price = document.getElementById('price').value;
+
+  const desc = document.getElementById('desc').value;
+
+  if(!name || !price || !desc){
+
+    alert("Preencha tudo!");
+
+    return;
+  }
+
+  await addDoc(collection(db,"products"),{
+
+    name,
+    image,
+    price,
+    description: desc
+
+  });
+
+  closeModal();
+
+  clearForm();
+
+}
+
+/* DELETE */
+
+window.deleteProduct = async function(id){
+
+  await deleteDoc(doc(db,"products",id));
+
+}
+
+/* MODAL */
+
+window.openAdd = function(){
+
+  document.getElementById('modal').style.display = "flex";
+
+}
+
+window.closeModal = function(){
+
+  document.getElementById('modal').style.display = "none";
+
+}
+
+window.logout = function(){
+
+  window.location.href = "index.html";
+
+}
+
+/* LIMPAR */
+
+function clearForm(){
+
+  document.getElementById('name').value = '';
+
+  document.getElementById('image').value = '';
+
+  document.getElementById('price').value = '';
+
+  document.getElementById('desc').value = '';
+
+}
+
+/* PESQUISA */
+
+window.searchProducts = function(){
+
+  const value =
+  document.getElementById('search')
+  .value
+  .toLowerCase();
+
+  const cards =
+  document.querySelectorAll('.card');
+
+  cards.forEach(card => {
+
+    const name =
+    card.querySelector('h3')
+    .innerText
+    .toLowerCase();
+
+    if(name.includes(value)){
+
+      card.style.display = "block";
+
+    } else {
+
+      card.style.display = "none";
+
+    }
+
+  });
+
+}
+
+/* INICIAR */
+
+renderRealtime();
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1395 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ADICIONE NO <head> -->
+
+<meta name="theme-color" content="#0a0015">
+
+<meta name="description"
+content="Black Diamond Multimarcas - Moda premium feminina fitness e casual">
+
+<meta name="keywords"
+content="moda feminina, fitness, roupas premium, black diamond">
+
+<title>Black Diamond Multimarcas</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+    html{
+    scroll-behavior:smooth;
+}
+
+/* PERFIL */
+
+.profile-modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.8);
+    display:none;
+    justify-content:center;
+    align-items:center;
+}
+
+.profile-box h2{
+    margin-bottom:20px;
+    color:#d4af37;
+}
+
+.profile-box input{
+    width:100%;
+    padding:14px;
+    margin-bottom:15px;
+    border:none;
+    border-radius:10px;
+    background:#222;
+    color:white;
+}
+
+.profile-box button{
+    width:100%;
+    padding:14px;
+    margin-top:10px;
+    border:none;
+    border-radius:10px;
+    background:linear-gradient(90deg,#d4af37,#7b2cbf);
+    color:white;
+    cursor:pointer;
+}
+    .menu a{
+    color:white;
+}
+.hero-content a{
+    color:white;
+}
+
+.contact a{
+    color:white;
+}
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins', sans-serif;
+}
+
+html, body{
+    overflow-x:hidden;
+}
+
+img{
+    max-width:100%;
+}
+
+body{
+    width:100%;
+    overflow-x:hidden;
+    background:linear-gradient(135deg, #0a0015 0%, #1a001a 50%, #0f0510 100%);
+}
+
+/* MENU */
+
+header{
+    width:100%;
+    position:fixed;
+    top:0;
+    left:0;
+    background:linear-gradient(90deg, #000 0%, #1a0033 50%, #000 100%);
+    padding:15px 8%;
+    z-index:999;
+    border-bottom:2px solid #d4af37;
+    box-shadow:0 0 20px rgba(212, 175, 55, 0.3);
+}
+
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{
+    color:#d4af37;
+    font-size:28px;
+    font-weight:700;
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.logo img{
+    height:60px;
+    width:auto;
+    filter:drop-shadow(0 0 8px rgba(212, 175, 55, 0.6));
+    transition:0.3s;
+}
+
+.logo img:hover{
+    filter:drop-shadow(0 0 15px rgba(123, 44, 191, 0.8));
+    transform:scale(1.1);
+}
+
+.menu{
+    display:flex;
+    gap:25px;
+    flex-wrap:wrap;
+}
+
+.menu a{
+    text-decoration:none;
+    
+    transition:0.3s;
+    position:relative;
+}
+
+.menu a:hover{
+    color:#d4af37;
+    text-shadow:0 0 10px #7b2cbf;
+}
+
+/* HERO */
+
+.hero{
+    min-height:100vh;
+    position:relative;
+    background: linear-gradient(135deg, rgba(123,44,191,0.5), rgba(0,0,0,0.8));
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:20px;
+    overflow:hidden;
+}
+
+.hero-bg{
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%, -50%);
+    width:100vw;
+    height:100vh;
+    object-fit:cover;
+    z-index:0;
+    pointer-events:none;
+}
+
+.hero-content{
+    position:relative;
+    z-index:1;
+}
+
+.hero-content h1{
+    font-size:60px;
+    background:linear-gradient(90deg, #d4af37, #7b2cbf);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    background-clip:text;
+    margin-bottom:20px;
+    text-shadow:0 0 20px rgba(123,44,191,0.5);
+}
+
+.hero-content p{
+    font-size:20px;
+    color:#ddd;
+    margin-bottom:30px;
+}
+
+.hero-content a{
+    background:linear-gradient(90deg, #d4af37, #7b2cbf);
+    
+    padding:15px 35px;
+    border-radius:50px;
+    text-decoration:none;
+    font-weight:bold;
+    transition:0.3s;
+    box-shadow:0 0 15px rgba(212, 175, 55, 0.4);
+}
+
+.hero-content a:hover{
+    transform:scale(1.05);
+    box-shadow:0 0 25px rgba(123, 44, 191, 0.6);
+}
+
+/* CATEGORIAS */
+
+.section{
+    padding:90px 8%;
+}
+
+.title{
+    text-align:center;
+    background:linear-gradient(90deg, #d4af37, #7b2cbf);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    background-clip:text;
+    font-size:40px;
+    margin-bottom:50px;
+}
+
+.grid{
+    display:flex;
+    flex-wrap:nowrap;
+    gap:30px;
+    overflow-x:auto;
+    overflow-y:hidden;
+    scroll-snap-type:x mandatory;
+    padding-bottom:10px;
+    scroll-behavior:smooth;
+    min-width:max-content;
+}
+
+.grid::-webkit-scrollbar{
+    display:none;
+}
+
+.grid .card{
+    min-width:320px;
+    flex:0 0 320px;
+    scroll-snap-align:start;
+}
+
+.products-nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+}
+
+.products-wrapper{
+    flex:1;
+    overflow-x:auto;
+    overflow-y:hidden;
+}
+
+.product-scroll-button{
+    background:rgba(212, 175, 55, 0.9);
+    color:#0a0015;
+    border:none;
+    width:45px;
+    height:45px;
+    border-radius:50%;
+    font-size:22px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.product-scroll-button:hover{
+    background:#d4af37;
+}
+
+.card{
+    background:linear-gradient(135deg, #1a0033 0%, #2d0052 100%);
+    border-radius:20px;
+    overflow:hidden;
+    border:2px solid rgba(212, 175, 55, 0.3);
+    transition:0.3s;
+    box-shadow:0 0 15px rgba(123, 44, 191, 0.2);
+}
+
+.card:hover{
+    transform:translateY(-10px);
+    border:2px solid #d4af37;
+    box-shadow:0 0 30px rgba(212, 175, 55, 0.5), 0 0 20px rgba(123, 44, 191, 0.4);
+}
+.card {
+  will-change: transform;
+}
+
+.btn {
+  transition: all 0.2s ease;
+}
+
+.card img{
+    width:100%;
+    aspect-ratio:1/1;
+    object-fit:cover;
+}
+
+.card-content{
+    padding:20px;
+}
+
+.card-content h3{
+    color:#d4af37;
+    margin-bottom:10px;
+}
+
+.price{
+    font-size:22px;
+    font-weight:bold;
+    margin:15px 0;
+}
+
+select{
+    width:100%;
+    padding:12px;
+    margin-bottom:12px;
+    border:none;
+    border-radius:10px;
+    background:#222;
+    
+}
+
+/* CARROSSEL DE IMAGENS */
+
+.carousel{
+    position:relative;
+    width:100%;
+    overflow:visible;
+    border-radius:20px;
+    margin-bottom:10px;
+}
+
+.carousel-container{
+    display:flex;
+    height:100%;
+    transition:transform 0.5s ease-in-out;
+}
+
+.carousel-item{
+    min-width:100%;
+    height:auto;
+    object-fit:contain;
+    background:rgba(0,0,0,0.3);
+    display:block;
+}
+
+.carousel-button{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    background:rgba(212, 175, 55, 0.7);
+    
+    border:none;
+    padding:10px 15px;
+    cursor:pointer;
+    font-size:18px;
+    border-radius:5px;
+    z-index:10;
+    transition:0.3s;
+}
+
+.carousel-button:hover{
+    background:#d4af37;
+}
+
+.carousel-prev{
+    left:10px;
+}
+
+.carousel-next{
+    right:10px;
+}
+
+.btn{
+    width:100%;
+    padding:14px;
+    border:2px solid #d4af37;
+    border-radius:12px;
+    background:linear-gradient(90deg, #7b2cbf, #3d1a6d);
+    color:#d4af37;
+    font-weight:bold;
+    cursor:pointer;
+    margin-top:10px;
+    transition:0.3s;
+}
+
+.btn:hover{
+    background:linear-gradient(90deg, #d4af37, #7b2cbf);
+    color:black;
+    box-shadow:0 0 15px rgba(212, 175, 55, 0.5);
+}
+
+/* PROMOÇÕES */
+
+.promo{
+    background:linear-gradient(135deg, #1a0033 0%, #2d0052 100%);
+    padding:80px 20px;
+    text-align:center;
+    border-top:2px solid #d4af37;
+    border-bottom:2px solid #d4af37;
+}
+
+.promo h2{
+    background:linear-gradient(90deg, #d4af37, #7b2cbf);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    background-clip:text;
+    font-size:50px;
+    margin-bottom:20px;
+}
+
+/* CONTATO */
+
+.contact{
+    text-align:center;
+}
+
+.contact a{
+    display:inline-block;
+    margin:10px;
+    padding:15px 30px;
+    border-radius:50px;
+    text-decoration:none;
+    
+    font-weight:600;
+}
+
+.whatsapp{
+    background:#25D366;
+}
+
+.instagram{
+    background:linear-gradient(45deg,#f09433,#dc2743,#bc1888);
+}
+
+.admin-section{
+    display:none;
+    padding:40px 8%;
+}
+
+.admin-container{
+    max-width:700px;
+    margin:0 auto;
+    background:rgba(255,255,255,0.06);
+    border:2px solid rgba(212, 175, 55, 0.3);
+    border-radius:20px;
+    padding:30px;
+    text-align:left;
+    box-shadow:0 0 30px rgba(0,0,0,0.3);
+}
+
+.admin-container h2{
+    margin-bottom:20px;
+    color:#d4af37;
+}
+
+.admin-field{
+    width:100%;
+    padding:15px;
+    margin:10px 0;
+    border-radius:12px;
+    border:1px solid rgba(255,255,255,0.1);
+    background:rgba(255,255,255,0.08);
+    
+}
+
+.admin-button{
+    padding:15px 30px;
+    border:none;
+    border-radius:12px;
+    background:linear-gradient(90deg, #d4af37, #7b2cbf);
+    color:#0a0015;
+    cursor:pointer;
+    font-weight:700;
+    margin-top:10px;
+}
+
+.admin-message{
+    margin-top:10px;
+    color:#f2b366;
+}
+
+.admin-dashboard{
+    display:none;
+}
+
+/* FOOTER */
+
+footer{
+    background:linear-gradient(90deg, #000, #1a0033, #000);
+    padding:30px;
+    text-align:center;
+    color:#999;
+    border-top:2px solid #d4af37;
+}
+
+/* ===== RESPONSIVO MOBILE ===== */
+
+html,body{
+    overflow-x:hidden;
+}
+
+img{
+    max-width:100%;
+}
+
+/* CELULAR */
+
+/* ===== RESPONSIVO MOBILE ===== */
+
+@media(max-width:768px){
+
+header{
+    padding:12px 5%;
+}
+
+nav{
+    flex-direction:column;
+    gap:10px;
+}
+
+.logo{
+    font-size:18px;
+    text-align:center;
+}
+
+.logo img{
+    height:45px;
+}
+
+.menu{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:12px;
+}
+
+.menu a{
+    font-size:14px;
+
+}
+
+.hero-bg{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transform:translate(-50%, -50%);
+}
+
+.hero-content h1{
+    font-size:34px;
+    line-height:1.2;
+}
+
+.hero-content p{
+    font-size:16px;
+}
+
+.hero-content a{
+    padding:12px 24px;
+    font-size:14px;
+}
+
+.section{
+    padding:60px 5%;
+
+}
+
+.grid{
+    gap:15px;
+}
+
+.grid .card{
+    min-width:240px;
+    flex:0 0 240px;
+}
+
+.card img{
+    height:240px;
+}
+
+.card-content{
+    padding:15px;
+}
+
+.price{
+    font-size:18px;
+}
+
+.btn{
+    padding:12px;
+    font-size:14px;
+}
+
+.product-scroll-button{
+    width:35px;
+    height:35px;
+    font-size:16px;
+}
+
+.promo h2{
+    font-size:32px;
+}
+
+.contact a{
+    width:100%;
+    max-width:300px;
+}
+
+footer{
+    font-size:13px;
+}
+
+/* HERO */
+
+.hero{
+    min-height:100vh;
+    height:auto;
+    padding:130px 20px 60px;
+}
+
+.hero-bg{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transform:translate(-50%, -50%);
+}
+
+.hero-content{
+    width:100%;
+}
+
+.hero-content h1{
+    font-size:34px;
+    line-height:1.2;
+    margin-bottom:15px;
+}
+
+.hero-content p{
+    font-size:16px;
+    margin-bottom:20px;
+}
+
+.hero-content a{
+    padding:12px 24px;
+    font-size:14px;
+}
+
+/* TÍTULOS */
+
+.title{
+    font-size:28px;
+    margin-bottom:30px;
+}
+
+/* SEÇÕES */
+
+/* PRODUTOS */
+
+.products-nav{
+    gap:6px;
+}
+
+.products-wrapper{
+    width:100%;
+    overflow-x:auto;
+}
+
+.grid{
+    gap:15px;
+    min-width:auto;
+}
+
+.grid .card{
+    min-width:240px;
+    flex:0 0 240px;
+}
+
+.card{
+    border-radius:16px;
+}
+
+.card img{
+    height:240px;
+    object-fit:cover;
+}
+
+.card-content{
+    padding:15px;
+}
+
+.card-content h3{
+    font-size:18px;
+}
+
+.card-content p{
+    font-size:14px;
+}
+
+.price{
+    font-size:18px;
+}
+
+select{
+    padding:10px;
+    font-size:14px;
+}
+
+/* BOTÕES */
+
+.btn:active{
+    transform:scale(0.96);
+}
+
+.btn{
+    display:block;
+    text-align:center;
+    text-decoration:none;
+}
+
+.btn{
+    padding:12px;
+    font-size:14px;
+    border-radius:10px;
+}
+
+.product-scroll-button{
+    width:35px;
+    height:35px;
+    font-size:16px;
+}
+
+/* PROMOÇÕES */
+
+.promo{
+    padding:60px 20px;
+}
+
+.promo h2{
+    font-size:32px;
+}
+
+/* CONTATO */
+
+.contact a{
+    width:100%;
+    max-width:300px;
+    font-size:14px;
+}
+
+/* FOOTER */
+
+footer{
+    padding:20px;
+    font-size:13px;
+}
+
+}
+
+/* PERFIL */
+
+.profile-modal{
+
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.8);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+}
+
+.profile-box h2{
+    margin-bottom:20px;
+    color:#d4af37;
+}
+
+.profile-box input{
+    width:100%;
+    padding:14px;
+    margin-bottom:15px;
+    border:none;
+    border-radius:10px;
+    background:#222;
+    color:white;
+    
+}
+
+.profile-box button{
+    width:100%;
+    padding:14px;
+    margin-top:10px;
+    border:none;
+    border-radius:10px;
+    background:linear-gradient(90deg,#d4af37,#7b2cbf);
+    color:white;
+    cursor:pointer;
+}
+
+@media(max-width:480px){
+
+.hero-content h1{
+    font-size:28px;
+}
+
+.hero-content p{
+    font-size:14px;
+}
+
+.logo{
+    font-size:16px;
+}
+
+.menu{
+    gap:8px;
+}
+
+.menu a{
+    font-size:12px;
+}
+
+.grid .card{
+    min-width:200px;
+    flex:0 0 200px;
+}
+
+.card img{
+    height:200px;
+}
+
+.product-scroll-button{
+    display:none;
+}
+
+.hero-content a{
+    display:inline-block;
+    width:100%;
+    max-width:260px;
+}
+
+.contact a{
+    width:100%;
+}
+
+}
+
+/* PERFIL */
+
+.profile-box{
+    width:90%;
+    max-width:400px;
+    background:#111;
+    padding:30px;
+    border-radius:20px;
+    border:2px solid #d4af37;
+    box-shadow:0 0 25px rgba(212,175,55,0.4);
+}
+
+.profile-box h2{
+    margin-bottom:20px;
+    color:#d4af37;
+}
+
+.profile-box input{
+    width:100%;
+    padding:14px;
+    margin-bottom:15px;
+    border:none;
+    border-radius:10px;
+    background:#222;
+    color:white;
+}
+
+.profile-box button{
+    width:100%;
+    padding:14px;
+    margin-top:10px;
+    border:none;
+    border-radius:10px;
+    background:linear-gradient(90deg,#d4af37,#7b2cbf);
+    color:white;
+    cursor:pointer;
+}
+
+
+</style>
+</head>
+
+<body>
+
+<!-- MENU -->
+
+<header>
+
+<nav>
+
+<div class="logo">
+<img src="FOTOR.png" alt="Black Diamond Logo">
+BLACK DIAMOND
+</div>
+
+<div class="menu">
+<a href="#">Início</a>
+
+<a href="#produtos">Produtos</a>
+
+<a href="#promocoes">Promoções</a>
+
+<a href="#contato">Contato</a>
+
+<a href="javascript:void(0)" onclick="showCart()">
+Carrinho 🛒
+</a>
+
+<a href="javascript:void(0)" onclick="openProfile()">
+Perfil
+</a>
+
+</div>
+
+</nav>
+
+</header>
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <img
+src="FOTOR2.webp"
+class="hero-bg"
+alt="Papel de parede"
+loading="lazy">
+
+<div class="hero-content">
+
+<h1>Black Diamond Multimarcas</h1>
+
+<p>
+Luxo, elegância e estilo em um só lugar.
+</p>
+
+<a href="https://wa.me/5591986202442" target="_blank">
+Comprar Agora
+</a>
+
+</div>
+
+</section>
+
+<!-- PRODUTOS -->
+
+<section class="section" id="produtos">
+
+<h2 class="title">Produtos em Destaque</h2>
+
+<div class="products-nav">
+<button class="product-scroll-button product-prev" onclick="scrollProducts(-1)">❮</button>
+<div class="products-wrapper">
+<div class="grid" id="productGrid"></div>
+</div>
+<button class="product-scroll-button product-next" onclick="scrollProducts(1)">❯</button>
+</div>
+    </section>
+
+    <!-- PROMOÇÕES -->
+
+<section class="promo" id="promocoes">
+
+<h2>PROMOÇÕES</h2>
+
+<p>
+Ofertas especiais da Black Diamond Multimarcas
+</p>
+
+</section>
+
+<!-- CONTATO -->
+
+<section class="section contact" id="contato">
+
+<h2 class="title">Contato</h2>
+
+<a class="whatsapp"
+href="https://wa.me/5591986202442">
+WhatsApp
+</a>
+
+<a class="instagram"
+href="https://www.instagram.com/blackdiamond_mult/">
+Instagram
+</a>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+
+<p>
+© Black Diamond Multimarcas - Todos os direitos reservados
+</p>
+
+<p>
+Pix: 91986202442
+</p>
+
+<p>
+Email: alexsandramarcela26@gmail.com
+</p>
+
+</footer>
+
+<!-- PERFIL -->
+
+<div id="profileModal" class="profile-modal">
+
+<div class="profile-box">
+
+<h2>Perfil</h2>
+
+<input
+type="email"
+id="email"
+placeholder="Seu email"
+autocomplete="email"
+required>
+
+<input
+type="password"
+id="password"
+placeholder="Sua senha"
+autocomplete="current-password"
+required>
+
+<button onclick="registerUser()">Criar Conta</button>
+
+<button onclick="loginUser()">Entrar</button>
+
+<button onclick="closeProfile()">Fechar</button>
+
+<p id="profileMessage"></p>
+
+</div>
+</div>
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+  getFirestore,
+  collection,
+  onSnapshot
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+/* FIREBASE */
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDbjwt1jHAefWVXGC0wrhYHBs6uoy9qOdU",
+  authDomain: "blackdiamond-site.firebaseapp.com",
+  projectId: "blackdiamond-site",
+  storageBucket: "blackdiamond-site.firebasestorage.app",
+  messagingSenderId: "152407901003",
+  appId: "1:152407901003:web:7fbeebe478535ad7a59ece"
+};
+
+const app = initializeApp(firebaseConfig);
+
+const db = getFirestore(app);
+
+/* PRODUTOS */
+
+function createProductCard(product){
+
+  const card = document.createElement('div');
+
+  card.className = 'card';
+
+  card.innerHTML = `
+    <img src="${product.image}" alt="${product.name}">
+
+    <div class="card-content">
+
+      <h3>${product.name}</h3>
+
+      <p>${product.description}</p>
+
+      <div class="price">${product.price}</div>
+
+      <select>
+        <option>Escolha a Cor</option>
+        <option>Rosa</option>
+        <option>Vermelho</option>
+        <option>Azul</option>
+        <option>Preto</option>
+      </select>
+
+      <select>
+        <option>Escolha o Tamanho</option>
+        <option>P</option>
+        <option>M</option>
+        <option>G</option>
+        <option>XG</option>
+      </select>
+
+      <button class="btn"
+      onclick="addToCart('${product.name}','${product.price}')">
+
+      Adicionar ao Carrinho
+
+      </button>
+
+      <a href="https://wa.me/5591986202442"
+      target="_blank"
+      class="btn">
+
+      Comprar no WhatsApp
+
+      </a>
+
+    </div>
+  `;
+
+  return card;
+}
+
+/* REALTIME FIREBASE */
+
+function renderProductsRealtime(){
+
+  onSnapshot(collection(db,"products"), (snapshot)=>{
+
+    const grid =
+    document.getElementById('productGrid');
+
+    grid.innerHTML = '';
+
+    snapshot.forEach((docItem)=>{
+
+      const product = docItem.data();
+
+      grid.appendChild(
+        createProductCard(product)
+      );
+
+    });
+
+  });
+
+}
+
+/* SCROLL */
+
+window.scrollProducts = function(direction){
+
+  const container =
+  document.getElementById('productGrid');
+
+  container.scrollBy({
+    left: direction * 300,
+    behavior:'smooth'
+  });
+
+}
+
+/* PERFIL */
+
+window.registerUser = function(){
+
+  const email =
+  document.getElementById("email").value;
+
+  const password =
+  document.getElementById("password").value;
+
+  if(!email || !password){
+
+    document.getElementById(
+      "profileMessage"
+    ).innerText =
+    "Preencha todos os campos!";
+
+    return;
+  }
+
+  const users =
+  JSON.parse(localStorage.getItem("users")) || [];
+
+  const userExists =
+  users.find(u => u.email === email);
+
+  if(userExists){
+
+    document.getElementById(
+      "profileMessage"
+    ).innerText =
+    "Esse email já existe!";
+
+    return;
+  }
+
+  users.push({
+    email,
+    password
+  });
+
+  localStorage.setItem(
+    "users",
+    JSON.stringify(users)
+  );
+
+  document.getElementById(
+    "profileMessage"
+  ).innerText =
+  "Conta criada com sucesso!";
+}
+
+window.loginUser = function(){
+
+  const email =
+  document.getElementById("email").value;
+
+  const password =
+  document.getElementById("password").value;
+
+  const users =
+  JSON.parse(localStorage.getItem("users")) || [];
+
+  if(email === "@26Google" && password === "181318"){
+
+    sessionStorage.setItem(
+      "admin-auth",
+      "true"
+    );
+
+    window.location.href =
+    "admin.html?dashboard=1";
+
+    return;
+  }
+
+  const user = users.find(u =>
+    u.email === email &&
+    u.password === password
+  );
+
+  if(user){
+
+    document.getElementById(
+      "profileMessage"
+    ).innerText =
+    "Login realizado com sucesso!";
+
+    closeProfile();
+
+  } else {
+
+    document.getElementById(
+      "profileMessage"
+    ).innerText =
+    "Conta não encontrada!";
+  }
+
+}
+
+/* CARRINHO */
+
+let cart =
+JSON.parse(
+  localStorage.getItem(
+    'blackdiamond-cart'
+  )
+) || [];
+
+window.addToCart = function(name, price){
+
+  const cleanPrice = Number(
+    price
+    .replace(/\./g,'')
+    .replace(',','.')
+    .replace(/[^\d.]/g,'')
+  );
+
+  const item = {
+    name,
+    price: cleanPrice || 0,
+    qty:1
+  };
+
+  const existing =
+  cart.find(p => p.name === name);
+
+  if(existing){
+
+    existing.qty += 1;
+
+  } else {
+
+    cart.push(item);
+
+  }
+
+  saveCart();
+
+}
+
+function saveCart(){
+
+  localStorage.setItem(
+    'blackdiamond-cart',
+    JSON.stringify(cart)
+  );
+
+}
+
+window.showCart = function(){
+
+  const savedCart =
+  JSON.parse(
+    localStorage.getItem(
+      'blackdiamond-cart'
+    )
+  ) || [];
+
+  if(savedCart.length === 0){
+
+    alert("Carrinho vazio!");
+
+    return;
+  }
+
+  let total = 0;
+
+  let msg =
+  "🛒 CARRINHO BLACK DIAMOND\n\n";
+
+  savedCart.forEach(item => {
+
+    msg +=
+    `${item.name} x${item.qty} - R$${item.price * item.qty}\n`;
+
+    total +=
+    item.price * item.qty;
+
+  });
+
+  msg += `\n💰 TOTAL: R$ ${total}`;
+
+  const url =
+  `https://wa.me/5591986202442?text=${encodeURIComponent(msg)}`;
+
+  window.open(url,'_blank');
+
+}
+
+/* MODAL PERFIL */
+
+window.openProfile = function(){
+
+  document.getElementById(
+    "profileModal"
+  ).style.display = "flex";
+
+}
+
+window.closeProfile = function(){
+
+  document.getElementById(
+    "profileModal"
+  ).style.display = "none";
+
+}
+
+/* INICIAR */
+
+renderProductsRealtime();
+
+</script>
+
+</body>
+</html>
