@@ -246,7 +246,9 @@ function renderRealtime(){
       grid.innerHTML += `
         <div class="card">
 
-          <img src="${p.image}">
+         ${p.images.map(img => `
+  <img src="${img}">
+`).join('')}
 
           <h3>${p.name}</h3>
 
@@ -303,6 +305,24 @@ window.saveProduct = async function(){
 
   }
 
+if(editando){
+
+  await updateDoc(doc(db,"products",editando),{
+
+    name,
+
+    images,
+
+    price,
+
+    description: desc
+
+  });
+
+  editando = null;
+
+} else {
+
   await addDoc(collection(db,"products"),{
 
     name,
@@ -315,6 +335,8 @@ window.saveProduct = async function(){
 
   });
 
+}
+  
   closeModal();
 
   clearForm();
