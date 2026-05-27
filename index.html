@@ -1090,8 +1090,28 @@ function createProductCard(product){
 
   card.className = 'card';
 
+  // pega imagens novas OU antiga
+  const imagens =
+    product.images && product.images.length
+    ? product.images
+    : [product.image];
+
   card.innerHTML = `
-    <img src="${product.image}" alt="${product.name}">
+
+    <div class="carousel">
+
+      <div class="carousel-container">
+
+        ${imagens.map(img => `
+          <img
+            src="${img}"
+            class="carousel-item"
+            alt="${product.name}">
+        `).join('')}
+
+      </div>
+
+    </div>
 
     <div class="card-content">
 
