@@ -444,7 +444,7 @@ window.searchProducts = function(){
 }
 
 
-function editarProduto(index) {
+window.editarProduto = function(index) {
 
    const produto = products[index];
 
@@ -456,13 +456,13 @@ function editarProduto(index) {
 
    editando = produto.id;
 
- imagensAntigas =
-  produto.images && produto.images.length
-  ? produto.images
-  : [produto.image];
+   imagensAntigas =
+   produto.images && produto.images.length
+   ? produto.images
+   : [produto.image];
+
    openAdd();
 }
-
 /* INICIAR */
 
 renderRealtime();
