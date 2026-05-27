@@ -456,8 +456,10 @@ function editarProduto(index) {
 
    editando = produto.id;
 
-  imagensAntigas = produto.images || [];
-
+ imagensAntigas =
+  produto.images && produto.images.length
+  ? produto.images
+  : [produto.image];
    openAdd();
 }
 
