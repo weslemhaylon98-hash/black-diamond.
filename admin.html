@@ -197,7 +197,8 @@ import {
   addDoc,
   onSnapshot,
   deleteDoc,
-  doc
+  doc,
+  updateDoc
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 /* FIREBASE */
@@ -253,7 +254,7 @@ function renderRealtime(){
 
           <strong>${p.price}</strong>
 
-          <button onclick="editarProduto(${index})">
+          <button onclick="editarProduto(${products.indexOf(p)})">
    Editar
 </button>
 
@@ -277,7 +278,7 @@ window.saveProduct = async function(){
 
   const name = document.getElementById('name').value;
 
-  const files = document.getElementById('image').files;
+  const files = document.getElementById('imagens').files;
 
   const price = document.getElementById('price').value;
 
@@ -300,22 +301,6 @@ window.saveProduct = async function(){
 
     images.push(base64);
 
-    function toBase64(file){
-
-  return new Promise((resolve,reject)=>{
-
-    const reader = new FileReader();
-
-    reader.readAsDataURL(file);
-
-    reader.onload = ()=> resolve(reader.result);
-
-    reader.onerror = error => reject(error);
-
-  });
-
-}
-
   }
 
   await addDoc(collection(db,"products"),{
@@ -333,6 +318,21 @@ window.saveProduct = async function(){
   closeModal();
 
   clearForm();
+
+}
+  function toBase64(file){
+
+  return new Promise((resolve,reject)=>{
+
+    const reader = new FileReader();
+
+    reader.readAsDataURL(file);
+
+    reader.onload = ()=> resolve(reader.result);
+
+    reader.onerror = error => reject(error);
+
+  });
 
 }
 /* DELETE */
@@ -369,7 +369,7 @@ function clearForm(){
 
   document.getElementById('name').value = '';
 
-  document.getElementById('image').value = '';
+  document.getElementById('imagens').value = '';
 
   document.getElementById('price').value = '';
 
@@ -413,15 +413,17 @@ window.searchProducts = function(){
 
 function editarProduto(index) {
 
-   const produto = produtos[index];
+   const produto = products[index];
 
-   document.getElementById('nome').value = produto.nome;
+   document.getElementById('name').value = produto.name;
 
-   document.getElementById('preco').value = produto.preco;
+   document.getElementById('price').value = produto.price;
 
-   document.getElementById('descricao').value = produto.descricao;
+   document.getElementById('desc').value = produto.description;
 
-   editando = index;
+   editando = produto.id;
+
+   openAdd();
 }
 
 /* INICIAR */
