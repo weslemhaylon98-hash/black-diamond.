@@ -895,6 +895,51 @@ footer{
     cursor:pointer;
 }
 
+    /* MODAL PRODUTO */
+
+.product-modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.8);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    z-index:99999;
+    padding:20px;
+}
+
+.product-box{
+    width:100%;
+    max-width:500px;
+    background:#111;
+    border:2px solid #d4af37;
+    border-radius:20px;
+    padding:20px;
+    text-align:center;
+}
+
+.product-box img{
+    width:100%;
+    border-radius:15px;
+    margin-bottom:15px;
+}
+
+.product-box h2{
+    color:#d4af37;
+    margin-bottom:10px;
+}
+
+.product-box p{
+    color:#ddd;
+    margin-bottom:15px;
+}
+
+#modalPrice{
+    font-size:25px;
+    font-weight:bold;
+    color:#d4af37;
+    margin-bottom:20px;
+}
 
 </style>
 </head>
@@ -1022,6 +1067,28 @@ Pix: 91986202442
 Email: alexsandramarcela26@gmail.com
 </p>
 
+    <!-- MODAL PRODUTO -->
+
+<div id="productModal" class="product-modal">
+
+  <div class="product-box">
+
+    <img id="modalImg">
+
+    <h2 id="modalName"></h2>
+
+    <p id="modalDesc"></p>
+
+    <div id="modalPrice"></div>
+
+    <button class="btn" onclick="closeProduct()">
+      Fechar
+    </button>
+
+  </div>
+
+</div>
+
 </footer>
 
 <!-- PERFIL -->
@@ -1089,6 +1156,8 @@ function createProductCard(product){
   const card = document.createElement('div');
 
   card.className = 'card';
+
+  card.onclick = () => openProduct(product);
 
   // pega imagens novas OU antiga
   const imagens =
@@ -1406,6 +1475,34 @@ window.closeProfile = function(){
 }
 
 /* INICIAR */
+
+    /* MODAL PRODUTO */
+
+window.openProduct = function(product){
+
+  document.getElementById('modalImg').src =
+  product.images?.[0] || product.image;
+
+  document.getElementById('modalName').innerText =
+  product.name;
+
+  document.getElementById('modalDesc').innerText =
+  product.description;
+
+  document.getElementById('modalPrice').innerText =
+  product.price;
+
+  document.getElementById('productModal').style.display =
+  'flex';
+
+}
+
+window.closeProduct = function(){
+
+  document.getElementById('productModal').style.display =
+  'none';
+
+}
 
 renderProductsRealtime();
 
