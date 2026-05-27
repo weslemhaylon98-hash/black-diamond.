@@ -295,6 +295,12 @@ window.saveProduct = async function(){
 
   let images = [];
 
+  if(files.length === 0){
+
+  images = imagensAntigas;
+
+}
+  
   for(let i = 0; i < files.length; i++){
 
     const file = files[i];
@@ -444,6 +450,8 @@ function editarProduto(index) {
    document.getElementById('desc').value = produto.description;
 
    editando = produto.id;
+
+  imagensAntigas = produto.images || [];
 
    openAdd();
 }
