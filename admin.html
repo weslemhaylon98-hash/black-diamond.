@@ -248,7 +248,10 @@ function renderRealtime(){
       grid.innerHTML += `
         <div class="card">
 
-         ${p.images.map(img => `
+         ${(p.images && p.images.length
+  ? p.images
+  : [p.image]
+).map(img => `
   <img src="${img}">
 `).join('')}
 
