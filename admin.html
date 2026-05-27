@@ -277,7 +277,7 @@ window.saveProduct = async function(){
 
   const name = document.getElementById('name').value;
 
-  const image = document.getElementById('image').value;
+  const files = document.getElementById('image').files;
 
   const price = document.getElementById('price').value;
 
@@ -290,11 +290,42 @@ window.saveProduct = async function(){
     return;
   }
 
+  let images = [];
+
+  for(let i = 0; i < files.length; i++){
+
+    const file = files[i];
+
+    const base64 = await toBase64(file);
+
+    images.push(base64);
+
+    function toBase64(file){
+
+  return new Promise((resolve,reject)=>{
+
+    const reader = new FileReader();
+
+    reader.readAsDataURL(file);
+
+    reader.onload = ()=> resolve(reader.result);
+
+    reader.onerror = error => reject(error);
+
+  });
+
+}
+
+  }
+
   await addDoc(collection(db,"products"),{
 
     name,
-    image,
+
+    images,
+
     price,
+
     description: desc
 
   });
@@ -304,7 +335,6 @@ window.saveProduct = async function(){
   clearForm();
 
 }
-
 /* DELETE */
 
 window.deleteProduct = async function(id){
