@@ -380,6 +380,20 @@ window.searchProducts = function(){
 
 }
 
+
+function editarProduto(index) {
+
+   const produto = produtos[index];
+
+   document.getElementById('nome').value = produto.nome;
+
+   document.getElementById('preco').value = produto.preco;
+
+   document.getElementById('descricao').value = produto.descricao;
+
+   editando = index;
+}
+
 /* INICIAR */
 
 renderRealtime();
